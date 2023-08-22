@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SMVS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+	<style type="text/css">
+		.main_section
+		{
+			/*padding:30px; */
+			/*border:1px solid lightgray;*/
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			-ms-transform: translateY(-50%);
+			transform: translateY(-50%);
+		}
+		#upload_img{
+			position: absolute;
+		    top: 48%;
+		    left: 37%;
+		    /*border: 1px green solid;*/
+		    width: 26%;
+		    height: 19%;
+		    /*display: none*/;
+		}
+		#user_name{
+			position: absolute;
+		    top: 63.6%;
+		    left: 56%;
+		    width: 40%;
+		    height: 5%;
+		    border:none;
+		    font-size: 4.7vw;
+		    color: brown;
+		    font-family: Georgia, Arial and Helvetica;
+		    font-weight: bold;
+		}
+		#user_name:focus {
+  			outline: none;
+		}
+		#upload_btn{
+			display: block;
+		    /*position: relative;*/
+		    background-color: #025bee;
+		    color: #ffffff;
+		    font-size: 1.12em;
+		    font-weight: 500;
+		    text-align: center;
+		    width: 18.75em;
+		    padding: 1.12em 0;
+		    margin: auto;
+		    border-radius: 0.31em;
+		    cursor: pointer;
+		    font-weight: bold;
+		    margin-left:5%;
+		    display: none;
+		}
+		#banner_section{
+			display: none;
+		}
+		
+	</style>
+</head>
+<body style="margin:0px;" onload="load_complete()">
+	<input type="file" id="upload_source_file" accept="image/*" onchange="showPreview(event);" style="display: none;">
+
+	<div class="main_section" width="100%" height="100%">
+		<div id="loader" style="margin-left:23%;">
+			<img src="loading.gif">
+		</div>
+
+		<button onclick='upload_btn_by_user()' id="upload_btn">
+			<i class="fa fa-upload" aria-hidden="true"></i> અહીં તમારો ફોટો અપલોડ કરો..
+		</button>
+
+		<div id="banner_section">
+			<img src="main_banner.jpg" height="100%" width="100%">
+			<img src="" id="upload_img" onload="complete_upload()" style="border-radius: 100%;">
+			<!-- <input type="text" id="user_name"> -->
+		</div>
+			
+	</div>
+</body>
+
+<script type="text/javascript">
+
+		function load_complete(){
+			document.getElementById("loader").style.display = "none";
+			document.getElementById("upload_btn").style.display = "block";
+		}
+
+		function upload_btn_by_user(){
+			document.getElementById("loader").style.display = "block";
+			document.getElementById("upload_source_file").click();
+			document.getElementById("upload_btn").style.display = "none";
+			// document.getElementById("banner_section").style.display = "block";
+		}
+
+		function showPreview(event){
+		  if(event.target.files.length > 0){
+		    var src = URL.createObjectURL(event.target.files[0]);
+		    var preview = document.getElementById("upload_img");
+		    preview.src = src;
+		    preview.style.display = "block";
+		  }
+		}
+
+		function complete_upload()
+		{
+			document.getElementById("loader").style.display = "none";
+			document.getElementById("banner_section").style.display = "block";
+			// document.getElementById("user_name").focus();	
+		}
+	</script>
+</html>
